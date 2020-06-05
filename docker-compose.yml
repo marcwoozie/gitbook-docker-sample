@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    tty: true
+    # command: gitbook serve
+    ports:
+      - 2919:4000
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./app/_book:/app
+    ports:
+      - 2920:80
